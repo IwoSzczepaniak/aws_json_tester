@@ -1,4 +1,4 @@
-import json
+import json, os
 
 
 def verify_json(file_path):
@@ -22,21 +22,16 @@ def verify_json(file_path):
         return True
 
 
-def test_verify_json():
-
-    assert not verify_json("test/invalid_path.json")
-
-    assert verify_json("test/empty.json")
-
-    assert not verify_json("test/single_asterisk.json")
-
-    assert verify_json("test/single_resource.json")
-
-    assert verify_json("test/multiple_resources.json")
-
-
-    print("\nAll tests passed successfully!")
-
-
 if __name__ == "__main__":
-    test_verify_json()
+    if len(os.sys.argv) != 2:
+        print("Usage: python3 verify.py <filename>")
+        os.sys.exit(1)
+
+    arg = os.sys.argv[1]
+    val = verify_json(arg)
+
+    if val:
+        print(f"\nFile {arg} is verified positevely(True)!")
+    else:
+        print(f"\nFile {arg} is rejected(False)!")
+
