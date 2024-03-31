@@ -24,10 +24,14 @@ def verify_json(file_path):
 
 if __name__ == "__main__":
     if len(os.sys.argv) != 2:
-        print("Usage: python3 verify.py <filename>")
+        print("Usage: python3 verify.py <filename.json>")
         os.sys.exit(1)
 
     arg = os.sys.argv[1]
+    if not arg.endswith(".json"):
+        print("Please provide a valid json file!")
+        os.sys.exit(1)
+
     val = verify_json(arg)
 
     if val:
